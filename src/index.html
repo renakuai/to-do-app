@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TODOLIST</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="#">
+  </head>
+  <body>
+    <div class = "content">
+      <div class = "side">
+        <div class = "title">todolist</div>
+        <div class = "create-btn">+ Create</div>
+        <div class = "nav">
+          <ul class = "nav__links other-nav">
+            <li class = "link" id="all">All tasks</li>
+            <li class = "link" id="today">Today</li>
+            <li class = "link" id="week">This week</li>
+          </ul>
+        </div>
+
+        <div class = "nav">
+          Lists
+          <ul class = "nav__links list-nav" id="list-nav">
+          </ul>
+        </div>
+      </div>
+
+      <div class ="main">
+        <div class="main-title">All todos</div>
+        <div class ="main-body"></div>
+      </div>
+
+      <div class = "create-modal">
+        <div class ="modal-title">Create a new...</div>
+        <div class = "create-modal__content">
+          <div class = "create-modal__nav">
+            <ul class ="nav__links">
+              <li class = "new-type" id="new-task">Task</li>
+              <li class="new-type" id="new-list">List</li>
+            </ul>
+          </div>
+          <form id = "task-form">
+            New Task
+            <label for="title">Title*</label>
+            <input type="text" id="title" required>
+            <label for="notes">Notes</label>
+            <textarea rows="5" id="notes"></textarea>
+            <label for="duedate">Due date</label>
+            <input type="date" id="duedate" max="2030-12-31">
+            <div class ="radio-group">
+              <input type="radio" id="priority1" value="High" name="priority">
+              <label for="priority1">High</label>
+              <input type="radio" id="priority2" value="Medium" name="priority">
+              <label for="priority2">Medium</label>
+              <input type="radio" id="priority3" value="Low" name="priority">
+              <label for="priority3">Low</label>
+            </div>
+            Select a project to add this to
+            <select name="list" id ="project-dropdown">
+              <option value="default-list" selected>Default list</option>
+            </select>
+            <div class="add">
+              <button type="button" id="add-btn">Add to do</button>
+            </div>
+          </form>
+          <form id = "list-form">
+            New List
+            <label for="list-name">Name*</label>
+            <input type="text" id="list-name" required>
+            <label for="list-desc">Description</label>
+            <textarea rows="5" id="list-desc"></textarea>
+            <div class="add">
+              <button type="button" id="add-list-btn">Create list</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

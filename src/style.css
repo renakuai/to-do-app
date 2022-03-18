@@ -1,0 +1,144 @@
+
+:root {
+  --blue: #3B84F3;
+}
+
+body {
+  font-family:'Inter', sans-serif;
+  margin: 0;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 320px repeat(8, 1fr);
+}
+
+.side {
+  grid-column: 1 / 2;
+  background-color: #F4F4F4;
+  padding: 2rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.create-btn {
+  width: 100%;
+  border-radius: 100px;
+  background-color: var(--blue);
+  text-align: center;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+ul.nav__links {
+  list-style-type: none;
+  padding: 0;
+}
+
+li.link, li.new-type {
+  padding-bottom: 1rem;
+}
+
+.create-modal {
+  display: none;
+  padding: 1.5rem;
+  width: 500px;
+  position: fixed;
+  background-color: #fff;
+  top: 30%;
+  left: 50%;
+  margin-left: -250px;
+  border: 1px solid #D8D8D8;
+  box-shadow: 1px 1px 10px rgb(128, 128, 128, 25%);
+}
+
+.modal-title {
+  border-bottom: 1px solid #000;
+  padding-bottom: 1.15rem;
+}
+
+.create-modal__content {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  margin-top: 1rem;
+}
+
+form#task-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+form#list-form {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+}
+
+.add {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: right;
+}
+
+.main {
+  grid-column: 3 / 9;
+  margin-top: 2rem;
+}
+
+.todo-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #D1D1D1;
+}
+
+.todo-row__right, 
+.todo-row__left {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.todo-row__status > * {
+  fill: #C4C4C4;
+  height: 2rem;
+  width: rem;
+}
+
+.todo-row__low,
+.todo-row__medium,
+.todo-row__high {
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 100px;
+  color: #fff;
+}
+
+.todo-row__high {
+  background-color: #DD3A92;
+}
+
+.todo-row__medium {
+  background-color: #E8900C;
+}
+
+.todo-row__low{
+  background-color: #0DB277;
+}
+
+.active-link {
+  color: #1E64CE;
+  font-weight: 700;
+}
