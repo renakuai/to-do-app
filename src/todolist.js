@@ -1,4 +1,8 @@
-import Checkbox from './img/checkbox.svg';
+import CheckBlank from './img/check-blank.svg';
+import CheckFilled from './img/check-filled.svg';
+import ChevronUp from './img/chevron-up.svg';
+import ChevronDown from './img/chevron-down.svg';
+
 
 //factory function for new to do
 const createTodo = (title, notes, duedate, priority, project, id) => {
@@ -29,24 +33,28 @@ const modifyTodo = (() => {
 
 //module for updating DOM
 const updateTodoDOM = (() => {
-  function closeModal() {
-    document.querySelector('.create-modal').style.display = 'none';
+  function closeTaskModal() {
+    document.querySelector('.create-task-modal').style.display = 'none';
   }
-  function openModal() {
-    document.querySelector('.create-modal').style.display = 'block';
+  function openTaskModal() {
+    document.querySelector('.create-task-modal').style.display = 'block';
   }
   function displayTodo(todo, clickedList) {
     const main = document.querySelector('.main-body');
+    const full = document.createElement('div');
+    full.classList.add('todo-full');
+    main.appendChild(full);
     const row = document.createElement('div');
     row.classList.add('todo-row');
-    main.appendChild(row);
+    row.id = todo.id;
+    full.appendChild(row);
       const row__left = document.createElement('div');
       row__left.classList.add('todo-row__left');
       row.appendChild(row__left);
         const row__status = document.createElement('div');
         row__status.classList.add('todo-row__status');
           const checkbox = new Image();
-          checkbox.src = Checkbox;
+          checkbox.src = CheckBlank;
           row__status.appendChild(checkbox);
         row__left.appendChild(row__status);
         const row__title = document.createElement('div');
@@ -80,11 +88,45 @@ const updateTodoDOM = (() => {
         row__duedate.classList.add('todo-row__duedate');
         row__duedate.textContent = todo.duedate;
         row__right.appendChild(row__duedate);
+        const row__chevron = document.createElement('div');
+        row__chevron.classList.add('chevron-closed');
+          const chevronDown = new Image();
+          chevronDown.src = ChevronDown;
+          chevronDown.classList.add('chevron');
+          row__chevron.appendChild(chevronDown);
+          row__right.appendChild(row__chevron);
+  }
+  function expandTodo(e) {
+    if (e.target.parentNode.parentNode.parentNode.parentNode.children[1] !== undefined) {
+      e.target.parentNode.parentNode.parentNode.parentNode.children[1].remove();
+      let parent = e.target.parentNode;
+      e.target.remove();
+        const chevronDown = new Image();
+        chevronDown.src = ChevronDown;
+        chevronDown.classList.add('chevron');
+        parent.appendChild(chevronDown);
+    }
+    else {
+      let todoRowId = e.target.parentNode.parentNode.parentNode.id;//this is a task!
+      let fullRow = e.target.parentNode.parentNode.parentNode.parentNode;
+      const expanded = document.createElement('div');
+      expanded.classList.add('expanded');
+      let retrieved = todoArray.filter(note => note.id == todoRowId);
+      let parent = e.target.parentNode;
+      e.target.remove();
+        const chevronUp = new Image();
+        chevronUp.src = ChevronUp;
+        chevronUp.classList.add('chevron');
+        parent.appendChild(chevronUp);
+      expanded.textContent = retrieved[0].notes;
+      fullRow.appendChild(expanded);
+    }
   }
   return {
-    closeModal : closeModal,
-    openModal : openModal,
+    closeTaskModal : closeTaskModal,
+    openTaskModal : openTaskModal,
     displayTodo: displayTodo,
+    expandTodo : expandTodo,
   }
 })();
 
@@ -162,11 +204,11 @@ const createList = (name, description, id) => {
 
 //module for updating list DOM
 const updateListDOM = (() => {
-  function closeModal() {
-    document.querySelector('.create-modal').style.display = 'none';
+  function closeListModal() {
+    document.querySelector('.create-list-modal').style.display = 'none';
   }
-  function openModal() {
-    document.querySelector('.create-modal').style.display = 'block';
+  function openListModal() {
+    document.querySelector('.create-list-modal').style.display = 'block';
   }
   function displaySideList(list) {
     const sideList = document.getElementById('list-nav');
@@ -175,16 +217,27 @@ const updateListDOM = (() => {
     newListLink.id = list.name;
     newListLink.textContent = list.name
     sideList.appendChild(newListLink);
+    const taskCount = document.createElement('div');
+    taskCount.classList.add('count');
+    newListLink.appendChild(taskCount);
   }
-  function highlightList(list) {
-    document.getElementById(list.name).classList.add('active-link');
-  }
-  function linkListToModal(list) {
-    const dropdown = document.getElementById('project-dropdown');
-    const newList = document.createElement('option');
-    newList.value = list.name;
-    newList.textContent = list.name;
-    dropdown.appendChild(newList);
+  function highlightList(clickedList) {
+    if (typeof clickedList == "object") {
+      clickedList = clickedList.name;
+      console.log(clickedList);
+    }
+    else {
+      clickedList = clickedList;
+    }
+    let active = document.querySelector('.active-link');
+    if (active !== null) {
+      document.querySelector('.active-link').classList.remove('active-link');
+      document.getElementById(clickedList).classList.add('active-link');
+    }
+    else {
+      console.log(clickedList);
+      document.getElementById(clickedList).classList.add('active-link');
+    }
   }
   function clearPage() {
     document.querySelector('.main-body').textContent = '';
@@ -201,15 +254,21 @@ const updateListDOM = (() => {
       document.querySelector('.main-title').textContent = 'This week\'s tasks';
     }
     else {
+      if (typeof clickedList == "object") {
+        clickedList = clickedList.name;
+        console.log(clickedList);
+      }
+      else {
+        clickedList = clickedList;
+      }
     document.querySelector('.main-title').textContent = clickedList;
     }
   }
   return {
-    closeModal : closeModal,
-    openModal : openModal,
+    closeListModal : closeListModal,
+    openListModal : openListModal,
     displaySideList : displaySideList,
     highlightList : highlightList,
-    linkListToModal : linkListToModal,
     setTitle : setTitle,
     clearPage : clearPage,
   }

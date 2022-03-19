@@ -13,29 +13,34 @@
     <div class = "content">
       <div class = "side">
         <div class = "title">todolist</div>
-        <div class = "create-btn">+ Create</div>
         <div class = "nav">
           <ul class = "nav__links other-nav">
-            <li class = "link" id="all">All tasks</li>
-            <li class = "link" id="today">Today</li>
-            <li class = "link" id="week">This week</li>
+            <li class = "link" id="all">All tasks<div class ="count"></div></li>
+            <li class = "link" id="today">Today<div class ="count"></div></li>
+            <li class = "link" id="week">This week<div class ="count"></div></li>
           </ul>
         </div>
 
         <div class = "nav">
-          Lists
-          <ul class = "nav__links list-nav" id="list-nav">
+          <div class ="nav-header">
+            <div class="nav-section">Lists</div>
+            <div class = "create-list-btn">+ Create list</div>
+          </div>
+            <ul class = "nav__links list-nav" id="list-nav">
           </ul>
         </div>
       </div>
 
       <div class ="main">
-        <div class="main-title">All todos</div>
+        <div class ="main__header">
+          <div class="main-title"></div>
+          <div class = "create-task-btn">+ Add task</div>
+        </div>
         <div class ="main-body"></div>
       </div>
 
-      <div class = "create-modal">
-        <div class ="modal-title">Create a new...</div>
+      <div class = "create-task-modal">
+        <div class ="modal-title">Add a new task</div>
         <div class = "create-modal__content">
           <div class = "create-modal__nav">
             <ul class ="nav__links">
@@ -59,14 +64,16 @@
               <input type="radio" id="priority3" value="Low" name="priority">
               <label for="priority3">Low</label>
             </div>
-            Select a project to add this to
-            <select name="list" id ="project-dropdown">
-              <option value="default-list" selected>Default list</option>
-            </select>
             <div class="add">
               <button type="button" id="add-btn">Add to do</button>
             </div>
           </form>
+        </div>
+      </div>
+
+      <div class = "create-list-modal">
+        <div class ="modal-title">Create a new list</div>
+        <div class = "create-modal__content">
           <form id = "list-form">
             New List
             <label for="list-name">Name*</label>
@@ -79,6 +86,7 @@
           </form>
         </div>
       </div>
+
     </div>
   </body>
 </html>
