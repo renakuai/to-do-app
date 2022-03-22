@@ -14,7 +14,8 @@ This was the final project of the Intermediate Javascript (front-end track) from
   <li>2 factory functions for new tasks and projects</li>
   <li>Several modules for traversing through existing tasks and projects and displaying information in the DOM</li>
   <li>Several event listeners for different actions like closing out of modals, creating todos, expanding details, etc.</li>
-  
+</ul>
+
 <h3>The code</h3>
 <p><b>The general flow</b>
 <br>I ended up recycling a lot of the same functions for the actions a user needed to take for creating a task, creating a project, modifying a task, and displaying the right tasks in the body. Will dive into a few of these flows below:
