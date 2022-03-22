@@ -3,31 +3,114 @@
   <head>
     <meta charset="utf-8">
     <title>TODOLIST</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"><script defer src="main.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="#">
   </head>
   <body>
-    <div class = "content">
       <div class = "side">
-        <div class = "title">todolist</div>
+        <div class = "title"><img src=06407eb467606bff0e9f.svg></div>
         <div class = "nav">
-          <ul class = "nav__links">
-            <li class = "link" id="home">Home</li>
-            <li class = "link" id="today">Today</li>
-            <li class = "link" id="month">This month</li>
+          <ul class = "nav__links other-nav">
+            <li class = "link" id="all">All tasks<div class ="count"></div></li>
+            <li class = "link" id="today">Today<div class ="count"></div></li>
+            <li class = "link" id="week">This week<div class ="count"></div></li>
           </ul>
         </div>
 
         <div class = "nav">
-          Lists
-          <ul class = "nav__links">
-            <li class = "link" id ="list"></li>
+          <div class ="nav-header">
+            <div class="nav-section">YOUR LISTS</div>
+            <div class = "create-list-btn">+ Create list</div>
+          </div>
+            <ul class = "nav__links list-nav" id="list-nav">
           </ul>
         </div>
       </div>
+      
+      <div class ="main">
+        <div class ="main__header">
+          <div class="main-title"></div>
+          <div class = "create-task-btn">+ Add task</div>
+        </div>
+        <div class ="main-body"></div>
+      </div>
+
+      <div class = "create-task-modal">
+        <div class ="modal-title">Add a new task
+          <div class ="close"><img class ="close" src=99008cb9bf08a207b5ab.svg></div>
+        </div>
+        <div class = "create-modal__content">
+          <form id = "task-form" onsubmit="return false">
+            <label for="title">Title*</label>
+            <input type="text" id="title" required>
+            <label for="notes">Notes</label>
+            <textarea rows="5" id="notes"></textarea>
+            <label for="duedate">Due date*</label>
+            <input type="date" id="duedate" max="2030-12-31" required>
+            Priority*
+            <div class ="radio-group">
+              <input type="radio" id="priority1" value="High" name="priority" required>
+              <label for="priority1">High</label>
+              <input type="radio" id="priority2" value="Medium" name="priority">
+              <label for="priority2">Medium</label>
+              <input type="radio" id="priority3" value="Low" name="priority">
+              <label for="priority3">Low</label>
+            </div>
+            <div class="add">
+              <button type="submit" id="add-btn">Add task</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class = "edit-task-modal">
+        <div class ="modal-title">Edit task
+          <div class ="close"><img class ="close" src=99008cb9bf08a207b5ab.svg></div>
+        </div>
+        <div class = "create-modal__content">
+          <form id = "task-form" onsubmit="return false">
+            <label for="edit-title">Title*</label>
+            <input type="text" id="edit-title" required>
+            <label for="edit-notes">Notes</label>
+            <textarea rows="5" id="edit-notes"></textarea>
+            <label for="edit-duedate">Due date*</label>
+            <input type="date" id="edit-duedate" max="2030-12-31" required>
+            Priority*
+            <div class ="radio-group">
+              <input type="radio" id="edit-priority1" value="High" name="edit-priority">
+              <label for="edit-priority1" required>High</label>
+              <input type="radio" id="edit-priority2" value="Medium" name="edit-priority">
+              <label for="edit-priority2">Medium</label>
+              <input type="radio" id="edit-priority3" value="Low" name="edit-priority">
+              <label for="edit-priority3">Low</label>
+            </div>
+            <div class="add">
+              <button type="submit" id="edit-task-btn">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class = "create-list-modal">
+        <div class ="modal-title">
+          Create a new list
+          <div class ="close"><img class ="close" src=99008cb9bf08a207b5ab.svg></div>
+        </div>
+        <div class = "create-modal__content">
+          <form id = "list-form" onsubmit="return false">
+            <label for="list-name">Name*</label>
+            <input type="text" id="list-name" required>
+            <label for="list-desc">Description</label>
+            <textarea rows="5" id="list-desc"></textarea>
+            <div class="add">
+              <button type="submit" id="add-list-btn">Create list</button>
+            </div>
+          </form>
+        </div>
+
     </div>
-  </body>
+  <script defer src="main.js"></script></body>
 </html>
